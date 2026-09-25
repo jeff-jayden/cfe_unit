@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 
 test('exports the App component', () => {
@@ -36,4 +36,12 @@ test('renders the profile info module in the sidebar', () => {
   expect(screen.getByText('Your Name')).toBeInTheDocument();
   expect(screen.getByText('@yourchannel')).toBeInTheDocument();
   expect(screen.getByText('1.2K subscribers')).toBeInTheDocument();
+});
+
+test('renders the Shorts page with example shorts when Shorts is clicked', () => {
+  render(<App />);
+  fireEvent.click(screen.getByText('Shorts'));
+  expect(screen.getByText('YouTube Shorts')).toBeInTheDocument();
+  expect(screen.getByText('React in 60 Seconds')).toBeInTheDocument();
+  expect(screen.getByText('CSS Trick You Did Not Know')).toBeInTheDocument();
 });
