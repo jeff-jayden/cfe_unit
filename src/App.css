@@ -272,3 +272,50 @@
   color: #606060;
   margin: 0;
 }
+
+.YouTube-Shorts-Grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px 16px;
+}
+
+.YouTube-Short-Card {
+  cursor: pointer;
+}
+
+.YouTube-Short-Thumbnail-Wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #e5e5e5;
+}
+
+.YouTube-Short-Thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.YouTube-Short-Info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 12px;
+}
+
+.YouTube-Short-Title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.YouTube-Short-Channel,
+.YouTube-Short-Stats {
+  font-size: 13px;
+  color: #606060;
+  margin: 0;
+}

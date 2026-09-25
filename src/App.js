@@ -1,4 +1,50 @@
+import { useState } from 'react';
 import './App.css';
+
+const shorts = [
+  {
+    id: 1,
+    title: 'React in 60 Seconds',
+    channel: 'Code Academy',
+    views: '1.2M views',
+    thumbnail: 'https://picsum.photos/seed/short1/360/640',
+  },
+  {
+    id: 2,
+    title: 'CSS Trick You Did Not Know',
+    channel: 'Dev Simplified',
+    views: '845K views',
+    thumbnail: 'https://picsum.photos/seed/short2/360/640',
+  },
+  {
+    id: 3,
+    title: 'Lo-Fi Beat Break',
+    channel: 'Chill Vibes',
+    views: '3.4M views',
+    thumbnail: 'https://picsum.photos/seed/short3/360/640',
+  },
+  {
+    id: 4,
+    title: 'Flexbox Explained Fast',
+    channel: 'Web Design Weekly',
+    views: '512K views',
+    thumbnail: 'https://picsum.photos/seed/short4/360/640',
+  },
+  {
+    id: 5,
+    title: 'A Day as a Software Engineer',
+    channel: 'Tech Diaries',
+    views: '2.1M views',
+    thumbnail: 'https://picsum.photos/seed/short5/360/640',
+  },
+  {
+    id: 6,
+    title: 'React Hooks in 20 Minutes',
+    channel: 'Frontend Masters',
+    views: '678K views',
+    thumbnail: 'https://picsum.photos/seed/short6/360/640',
+  },
+];
 
 const videos = [
   {
@@ -69,6 +115,12 @@ const sidebarItems = [
 ];
 
 function App() {
+  const [activePage, setActivePage] = useState('Home');
+
+  const handleSidebarItemClick = (item) => {
+    setActivePage(item);
+  };
+
   return (
     <div className="YouTube-App">
       <header className="YouTube-Header">
@@ -113,10 +165,11 @@ function App() {
               <div
                 key={item}
                 className={
-                  item === 'Home'
+                  item === activePage
                     ? 'YouTube-Sidebar-Item YouTube-Sidebar-Item-Active'
                     : 'YouTube-Sidebar-Item'
                 }
+                onClick={() => handleSidebarItemClick(item)}
               >
                 {item}
               </div>
@@ -133,34 +186,61 @@ function App() {
         </nav>
 
         <main className="YouTube-Home-Content">
-          <h1 className="YouTube-Home-Page-Title">YouTube Home Page</h1>
-          <h1 className="YouTube-Section-Title">Recommended</h1>
-          <div className="YouTube-Video-Grid">
-            {videos.map((video) => (
-              <div className="YouTube-Video-Card" key={video.id}>
-                <div className="YouTube-Thumbnail-Wrapper">
-                  <img
-                    className="YouTube-Thumbnail"
-                    src={video.thumbnail}
-                    alt={video.title}
-                  />
-                  <span className="YouTube-Duration">{video.duration}</span>
-                </div>
-                <div className="YouTube-Video-Info">
-                  <div className="YouTube-Channel-Avatar">
-                    {video.channel.charAt(0)}
+          {activePage === 'Shorts' ? (
+            <>
+              <h1 className="YouTube-Home-Page-Title">YouTube Shorts</h1>
+              <h1 className="YouTube-Section-Title">Shorts</h1>
+              <div className="YouTube-Shorts-Grid">
+                {shorts.map((short) => (
+                  <div className="YouTube-Short-Card" key={short.id}>
+                    <div className="YouTube-Short-Thumbnail-Wrapper">
+                      <img
+                        className="YouTube-Short-Thumbnail"
+                        src={short.thumbnail}
+                        alt={short.title}
+                      />
+                    </div>
+                    <div className="YouTube-Short-Info">
+                      <h3 className="YouTube-Short-Title">{short.title}</h3>
+                      <p className="YouTube-Short-Channel">{short.channel}</p>
+                      <p className="YouTube-Short-Stats">{short.views}</p>
+                    </div>
                   </div>
-                  <div className="YouTube-Video-Meta">
-                    <h3 className="YouTube-Video-Title">{video.title}</h3>
-                    <p className="YouTube-Video-Channel">{video.channel}</p>
-                    <p className="YouTube-Video-Stats">
-                      {video.views} • {video.uploaded}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          ) : (
+            <>
+              <h1 className="YouTube-Home-Page-Title">YouTube Home Page</h1>
+              <h1 className="YouTube-Section-Title">Recommended</h1>
+              <div className="YouTube-Video-Grid">
+                {videos.map((video) => (
+                  <div className="YouTube-Video-Card" key={video.id}>
+                    <div className="YouTube-Thumbnail-Wrapper">
+                      <img
+                        className="YouTube-Thumbnail"
+                        src={video.thumbnail}
+                        alt={video.title}
+                      />
+                      <span className="YouTube-Duration">{video.duration}</span>
+                    </div>
+                    <div className="YouTube-Video-Info">
+                      <div className="YouTube-Channel-Avatar">
+                        {video.channel.charAt(0)}
+                      </div>
+                      <div className="YouTube-Video-Meta">
+                        <h3 className="YouTube-Video-Title">{video.title}</h3>
+                        <p className="YouTube-Video-Channel">{video.channel}</p>
+                        <p className="YouTube-Video-Stats">
+                          {video.views} • {video.uploaded}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </main>
       </div>
     </div>
