@@ -108,18 +108,28 @@ function App() {
 
       <div className="YouTube-Body">
         <nav className="YouTube-Sidebar">
-          {sidebarItems.map((item) => (
-            <div
-              key={item}
-              className={
-                item === 'Home'
-                  ? 'YouTube-Sidebar-Item YouTube-Sidebar-Item-Active'
-                  : 'YouTube-Sidebar-Item'
-              }
-            >
-              {item}
+          <div className="YouTube-Sidebar-Items">
+            {sidebarItems.map((item) => (
+              <div
+                key={item}
+                className={
+                  item === 'Home'
+                    ? 'YouTube-Sidebar-Item YouTube-Sidebar-Item-Active'
+                    : 'YouTube-Sidebar-Item'
+                }
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+          <div className="YouTube-Profile-Card">
+            <div className="YouTube-Profile-Avatar">U</div>
+            <div className="YouTube-Profile-Info">
+              <p className="YouTube-Profile-Name">Your Name</p>
+              <p className="YouTube-Profile-Handle">@yourchannel</p>
+              <p className="YouTube-Profile-Subs">1.2K subscribers</p>
             </div>
-          ))}
+          </div>
         </nav>
 
         <main className="YouTube-Home-Content">

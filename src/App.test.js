@@ -30,3 +30,10 @@ test('renders the recommended video grid', () => {
   ).toBeInTheDocument();
   expect(screen.getByText('Code Academy')).toBeInTheDocument();
 });
+
+test('renders the profile info module in the sidebar', () => {
+  render(<App />);
+  expect(screen.getByText('Your Name')).toBeInTheDocument();
+  expect(screen.getByText('@yourchannel')).toBeInTheDocument();
+  expect(screen.getByText('1.2K subscribers')).toBeInTheDocument();
+});

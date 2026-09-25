@@ -108,6 +108,62 @@
   padding: 12px 8px;
   background-color: #ffffff;
   min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.YouTube-Sidebar-Items {
+  display: flex;
+  flex-direction: column;
+}
+
+.YouTube-Profile-Card {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  z-index: 5;
+}
+
+.YouTube-Profile-Avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #065fd4;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.YouTube-Profile-Info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.YouTube-Profile-Name {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.YouTube-Profile-Handle,
+.YouTube-Profile-Subs {
+  font-size: 12px;
+  color: #606060;
+  margin: 0;
 }
 
 .YouTube-Sidebar-Item {
