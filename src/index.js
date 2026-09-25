@@ -7,7 +7,10 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <div className="YouTube-Home-Content">
+      <h1>YouTube Home Page</h1>
+      <p>Welcome to YouTube! Explore videos, channels, and more.</p>
+    </div>
   </React.StrictMode>
 );
 
