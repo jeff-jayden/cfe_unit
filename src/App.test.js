@@ -31,6 +31,17 @@ test('renders the recommended video grid', () => {
   expect(screen.getByText('Code Academy')).toBeInTheDocument();
 });
 
+test('renders the additional example videos', () => {
+  render(<App />);
+  expect(
+    screen.getByText('Understanding TypeScript Generics')
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText('Machine Learning Basics with TensorFlow')
+  ).toBeInTheDocument();
+  expect(screen.getByText('AI Academy')).toBeInTheDocument();
+});
+
 test('renders the profile info module in the sidebar', () => {
   render(<App />);
   expect(screen.getByText('Your Name')).toBeInTheDocument();
