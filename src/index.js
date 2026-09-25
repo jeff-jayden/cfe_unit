@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div className="YouTube-Home-Content">
-      <h1>YouTube Home Page</h1>
-      <p>Welcome to YouTube! Explore videos, channels, and more.</p>
-    </div>
+    <App />
   </React.StrictMode>
 );
 

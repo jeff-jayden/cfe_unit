@@ -1,23 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          YouTube Home Page Content
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="YouTube-Home-Content">
+      <h1>YouTube Home Page</h1>
+      <p>Welcome to YouTube! Explore videos, channels, and more.</p>
     </div>
   );
 }
