@@ -1,10 +1,158 @@
 import './App.css';
 
+const videos = [
+  {
+    id: 1,
+    title: 'Building a YouTube Clone with React',
+    channel: 'Code Academy',
+    views: '1.2M views',
+    uploaded: '3 days ago',
+    duration: '12:45',
+    thumbnail: 'https://picsum.photos/seed/yt1/320/180',
+  },
+  {
+    id: 2,
+    title: 'Top 10 JavaScript Tips You Should Know',
+    channel: 'Dev Simplified',
+    views: '845K views',
+    uploaded: '1 week ago',
+    duration: '08:21',
+    thumbnail: 'https://picsum.photos/seed/yt2/320/180',
+  },
+  {
+    id: 3,
+    title: 'Relaxing Lo-Fi Beats to Study To',
+    channel: 'Chill Vibes',
+    views: '3.4M views',
+    uploaded: '2 weeks ago',
+    duration: '1:02:33',
+    thumbnail: 'https://picsum.photos/seed/yt3/320/180',
+  },
+  {
+    id: 4,
+    title: 'CSS Grid vs Flexbox: Which One Wins?',
+    channel: 'Web Design Weekly',
+    views: '512K views',
+    uploaded: '5 days ago',
+    duration: '15:07',
+    thumbnail: 'https://picsum.photos/seed/yt4/320/180',
+  },
+  {
+    id: 5,
+    title: 'A Day in the Life of a Software Engineer',
+    channel: 'Tech Diaries',
+    views: '2.1M views',
+    uploaded: '1 month ago',
+    duration: '10:18',
+    thumbnail: 'https://picsum.photos/seed/yt5/320/180',
+  },
+  {
+    id: 6,
+    title: 'Learn React Hooks in 20 Minutes',
+    channel: 'Frontend Masters',
+    views: '678K views',
+    uploaded: '4 days ago',
+    duration: '20:00',
+    thumbnail: 'https://picsum.photos/seed/yt6/320/180',
+  },
+];
+
+const sidebarItems = [
+  'Home',
+  'Shorts',
+  'Subscriptions',
+  'Library',
+  'History',
+  'Your videos',
+  'Watch later',
+  'Liked videos',
+];
+
 function App() {
   return (
-    <div className="YouTube-Home-Content">
-      <h1>YouTube Home Page</h1>
-      <p>Welcome to YouTube! Explore videos, channels, and more.</p>
+    <div className="YouTube-App">
+      <header className="YouTube-Header">
+        <div className="YouTube-Header-Left">
+          <button className="YouTube-Icon-Button" aria-label="Menu">
+            ☰
+          </button>
+          <div className="YouTube-Logo">
+            <span className="YouTube-Logo-Play">▶</span>
+            <span className="YouTube-Logo-Text">YouTube</span>
+          </div>
+        </div>
+        <div className="YouTube-Header-Center">
+          <input
+            className="YouTube-Search-Input"
+            type="text"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button className="YouTube-Search-Button" aria-label="Search button">
+            🔍
+          </button>
+        </div>
+        <div className="YouTube-Header-Right">
+          <button className="YouTube-Icon-Button" aria-label="Create">
+            ＋
+          </button>
+          <button className="YouTube-Icon-Button" aria-label="Apps">
+            ⊞
+          </button>
+          <button className="YouTube-Icon-Button" aria-label="Notifications">
+            🔔
+          </button>
+          <div className="YouTube-Avatar">U</div>
+        </div>
+      </header>
+
+      <div className="YouTube-Body">
+        <nav className="YouTube-Sidebar">
+          {sidebarItems.map((item) => (
+            <div
+              key={item}
+              className={
+                item === 'Home'
+                  ? 'YouTube-Sidebar-Item YouTube-Sidebar-Item-Active'
+                  : 'YouTube-Sidebar-Item'
+              }
+            >
+              {item}
+            </div>
+          ))}
+        </nav>
+
+        <main className="YouTube-Home-Content">
+          <h1 className="YouTube-Home-Page-Title">YouTube Home Page</h1>
+          <h1 className="YouTube-Section-Title">Recommended</h1>
+          <div className="YouTube-Video-Grid">
+            {videos.map((video) => (
+              <div className="YouTube-Video-Card" key={video.id}>
+                <div className="YouTube-Thumbnail-Wrapper">
+                  <img
+                    className="YouTube-Thumbnail"
+                    src={video.thumbnail}
+                    alt={video.title}
+                  />
+                  <span className="YouTube-Duration">{video.duration}</span>
+                </div>
+                <div className="YouTube-Video-Info">
+                  <div className="YouTube-Channel-Avatar">
+                    {video.channel.charAt(0)}
+                  </div>
+                  <div className="YouTube-Video-Meta">
+                    <h3 className="YouTube-Video-Title">{video.title}</h3>
+                    <p className="YouTube-Video-Channel">{video.channel}</p>
+                    <p className="YouTube-Video-Stats">
+                      {video.views} • {video.uploaded}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
