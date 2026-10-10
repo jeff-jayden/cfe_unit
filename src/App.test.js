@@ -51,10 +51,56 @@ test('navigates to the Your Videos page when clicking the sidebar item', async (
 
   await userEvent.click(screen.getByText('Your videos'));
 
-  expect(screen.getByText('Your Videos')).toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', { name: 'Your Videos' })
+  ).toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Upload' })).toBeInTheDocument();
   expect(screen.queryByText('Recommended')).not.toBeInTheDocument();
   expect(screen.queryByText(/YouTube Home Page/)).not.toBeInTheDocument();
+});
+
+test('renders the Your Videos page tabs and video rows', async () => {
+  render(<App />);
+
+  await userEvent.click(screen.getByText('Your videos'));
+
+  expect(screen.getByText('Videos')).toBeInTheDocument();
+  expect(screen.getAllByText('Shorts').length).toBeGreaterThan(0);
+  expect(screen.getByText('Live')).toBeInTheDocument();
+  expect(screen.getByText('Playlists')).toBeInTheDocument();
+  expect(
+    screen.getByRole('button', {
+      name: 'Edit Building a YouTube Clone with React',
+    })
+  ).toBeInTheDocument();
+});
+
+test('shows an alert when clicking the Upload button on the Your Videos page', async () => {
+  const alertSpy = jest.spyOn(window, 'alert').mockImplementation(() => {});
+  render(<App />);
+
+  await userEvent.click(screen.getByText('Your videos'));
+  await userEvent.click(screen.getByRole('button', { name: 'Upload' }));
+
+  expect(alertSpy).toHaveBeenCalledWith('Upload a new video');
+  alertSpy.mockRestore();
+});
+
+test('shows an alert when clicking the edit button of a video', async () => {
+  const alertSpy = jest.spyOn(window, 'alert').mockImplementation(() => {});
+  render(<App />);
+
+  await userEvent.click(screen.getByText('Your videos'));
+  await userEvent.click(
+    screen.getByRole('button', {
+      name: 'Edit Building a YouTube Clone with React',
+    })
+  );
+
+  expect(alertSpy).toHaveBeenCalledWith(
+    'Edit: Building a YouTube Clone with React'
+  );
+  alertSpy.mockRestore();
 });
 
 test('returns to the Home page when clicking the Home sidebar item', async () => {
