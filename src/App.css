@@ -272,3 +272,98 @@
   color: #606060;
   margin: 0;
 }
+
+.YouTube-YourVideos-Page {
+  display: flex;
+  flex-direction: column;
+}
+
+.YouTube-YourVideos-Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.YouTube-YourVideos-Title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.YouTube-Upload-Button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 18px;
+  background-color: #065fd4;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.YouTube-Upload-Button:hover {
+  background-color: #0553ba;
+}
+
+.YouTube-YourVideos-Tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 24px;
+}
+
+.YouTube-YourVideos-Tab {
+  padding: 8px 0;
+  font-size: 14px;
+  color: #606060;
+  cursor: pointer;
+}
+
+.YouTube-YourVideos-Tab-Active {
+  color: #0f0f0f;
+  font-weight: 600;
+  border-bottom: 2px solid #0f0f0f;
+}
+
+.YouTube-YourVideos-List {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.YouTube-YourVideos-Row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.YouTube-YourVideos-Row:hover {
+  background-color: #f2f2f2;
+}
+
+.YouTube-YourVideos-Row-Thumb {
+  position: relative;
+  width: 246px;
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #e5e5e5;
+}
+
+.YouTube-YourVideos-Row-Info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.YouTube-YourVideos-Row-Actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
