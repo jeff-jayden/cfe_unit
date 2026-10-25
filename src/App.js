@@ -72,6 +72,14 @@ const sidebarItems = [
 
 function App() {
   const [activePage, setActivePage] = useState('Home');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const filteredVideos = normalizedQuery
+    ? videos.filter((video) =>
+        video.title.toLowerCase().includes(normalizedQuery)
+      )
+    : videos;
 
   return (
     <div className="YouTube-App">
@@ -91,6 +99,8 @@ function App() {
             type="text"
             placeholder="Search"
             aria-label="Search"
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
           />
           <button className="YouTube-Search-Button" aria-label="Search button">
             🔍
@@ -145,7 +155,7 @@ function App() {
               <h1 className="YouTube-Home-Page-Title">YouTube Home Page</h1>
               <h1 className="YouTube-Section-Title">Recommended</h1>
               <div className="YouTube-Video-Grid">
-                {videos.map((video) => (
+                {filteredVideos.map((video) => (
                   <div className="YouTube-Video-Card" key={video.id}>
                     <div className="YouTube-Thumbnail-Wrapper">
                       <img
