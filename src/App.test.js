@@ -251,3 +251,97 @@ test('renders the Your Videos page again after navigating Home and back', async 
   expect(screen.getAllByText('Playlists').length).toBeGreaterThan(0);
 });
 
+test('filters the home video grid by the search keyword', async () => {
+  render(<App />);
+
+  await userEvent.type(screen.getByPlaceholderText('Search'), 'react');
+
+  expect(
+    screen.getByText('Building a YouTube Clone with React')
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText('Learn React Hooks in 20 Minutes')
+  ).toBeInTheDocument();
+  expect(
+    screen.queryByText('Relaxing Lo-Fi Beats to Study To')
+  ).not.toBeInTheDocument();
+  expect(
+    screen.queryByText('CSS Grid vs Flexbox: Which One Wins?')
+  ).not.toBeInTheDocument();
+});
+
+test('matches the search keyword case-insensitively', async () => {
+  render(<App />);
+
+  await userEvent.type(screen.getByPlaceholderText('Search'), 'JAVASCRIPT');
+
+  expect(
+    screen.getByText('Top 10 JavaScript Tips You Should Know')
+  ).toBeInTheDocument();
+  expect(
+    screen.queryByText('Building a YouTube Clone with React')
+  ).not.toBeInTheDocument();
+});
+
+test('restores all videos after clearing the search box', async () => {
+  render(<App />);
+
+  const searchInput = screen.getByPlaceholderText('Search');
+  await userEvent.type(searchInput, 'react');
+  expect(
+    screen.queryByText('Relaxing Lo-Fi Beats to Study To')
+  ).not.toBeInTheDocument();
+
+  await userEvent.clear(searchInput);
+
+  expect(
+    screen.getByText('Building a YouTube Clone with React')
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText('Relaxing Lo-Fi Beats to Study To')
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText('CSS Grid vs Flexbox: Which One Wins?')
+  ).toBeInTheDocument();
+  expect(
+    screen.getByText('A Day in the Life of a Software Engineer')
+  ).toBeInTheDocument();
+});
+
+test('renders an empty video grid when no title matches the search', async () => {
+  render(<App />);
+
+  await userEvent.type(
+    screen.getByPlaceholderText('Search'),
+    'zzz-no-such-video'
+  );
+
+  expect(
+    screen.queryByText('Building a YouTube Clone with React')
+  ).not.toBeInTheDocument();
+  expect(
+    screen.queryByText('Top 10 JavaScript Tips You Should Know')
+  ).not.toBeInTheDocument();
+  expect(screen.getByText('Recommended')).toBeInTheDocument();
+  expect(screen.getByText(/YouTube Home Page/)).toBeInTheDocument();
+});
+
+test('keeps the Your Videos page unaffected by the search keyword', async () => {
+  render(<App />);
+
+  await userEvent.type(
+    screen.getByPlaceholderText('Search'),
+    'zzz-no-such-video'
+  );
+  await userEvent.click(screen.getByText('Your videos'));
+
+  expect(
+    screen.getByRole('heading', { name: 'Your Videos' })
+  ).toBeInTheDocument();
+  expect(
+    screen.getByRole('button', {
+      name: 'Edit Building a YouTube Clone with React',
+    })
+  ).toBeInTheDocument();
+});
+
